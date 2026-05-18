@@ -1,0 +1,65 @@
+{
+  "name": "github-sync",
+  "displayName": "GitHub Sync",
+  "description": "Quick upload and download buttons for GitHub repos",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "githubSync.upload",
+        "title": "GitHub Sync: Upload",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "githubSync.download",
+        "title": "GitHub Sync: Download",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "githubSync.setRepo",
+        "title": "GitHub Sync: Set Repository"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "githubSync.upload",
+          "group": "navigation@1",
+          "when": "true"
+        },
+        {
+          "command": "githubSync.download",
+          "group": "navigation@2",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GitHub Sync",
+      "properties": {
+        "githubSync.repository": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub repository in the format username/repo"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
